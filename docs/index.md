@@ -6,10 +6,9 @@ nav_order: 0
 
 # Welcome to the HaCasa Next Documentation.
 
-[![Ko-fi](https://img.shields.io/badge/support_me_on_ko--fi-F16061?style=for-the-badge\&logo=kofi\&logoColor=f5f5f5)](https://ko-fi.com/damianeickhoff)
-[![Discord](https://img.shields.io/discord/1256323927152660521?style=for-the-badge\&logo=discord\&logoColor=white\&labelColor=%23a3aaf8\&label=Chat%20on%20Discord\&color=%235966f2)](https://discord.com/invite/9uMs9zCT7d)
-![GitHub Release](https://img.shields.io/github/v/release/damianeickhoff/HaCasa?display_name=release\&style=for-the-badge\&label=Latest%20release\&color=%239aaed4)
-![GitHub Repo stars](https://img.shields.io/github/stars/damianeickhoff/hacasa?style=for-the-badge\&logo=github\&label=Github%20Stars\&labelColor=%23d4b392\&color=%23f9f2e9)
+[![Discord](https://img.shields.io/discord/1256323927152660521?style=for-the-badge&logo=discord&logoColor=white&labelColor=%23a3aaf8&label=Chat%20on%20Discord&color=%235966f2)](https://discord.com/invite/9uMs9zCT7d)
+![GitHub Release](https://img.shields.io/github/v/release/N0edL/HaCasa-Next?display_name=release&style=for-the-badge&label=Latest%20release&color=%239aaed4)
+![GitHub Repo stars](https://img.shields.io/github/stars/N0edL/HaCasa-Next?style=for-the-badge&logo=github&label=Github%20Stars&labelColor=%23d4b392&color=%23f9f2e9)
 
 a refined fork of the original HaCasa project. We’ve squashed some bugs, cleaned up the visuals, and added new card designs to take your Home Assistant dashboard to the next level.
 
@@ -24,7 +23,7 @@ This page will guide you through everything you need to get started. From instal
 
 ## What is HaCasa?
 
-Originally created to bring a clean, minimalistic dashboard to Home Assistant, **HaCasa** focused on being beautiful, simple, and family-friendly. With HaCasa Next, we build upon that vision by adding polish, new features, and future-focused tweaks.
+Originally the sole purpose of HaCasa is to provide a modern, minimalistic dashboard for Home Assistant. It is designed to be easy to use and customize, while still providing a professional look and feel. The SOAP (significant other acceptance parameters) is a key aspect of the design, ensuring that the interface is not only functional and understandable but also visually appealing to everyone in your household.
 
 ## Theme + Cards = ❤️
 
@@ -43,7 +42,6 @@ We loved the base, but wanted a little more – fewer rough edges, more consiste
 
 ## Contributing
 
-Got a card idea that fits the HaCasa Next vibe? Create it using the `hcn_` prefix and share it with the community! Check the [Contributing](#contributing) section to get started.
+Got a card idea that fits the HaCasa Next vibe? Create it in `custom_templates` and share it with the community! Check the [Contributing](#contributing) section to get started.
 
 Let’s build something awesome together.
-
