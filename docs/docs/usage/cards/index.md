@@ -16,4 +16,4 @@ We made HaCasa easy to use but you need to know a few basics.
 > We are working hard to deliver a new, user-friendly version that will be easy to install directly through the Home Assistant UI.
 > In the meantime, please check [HaCasa](https://github.com/damianeickhoff/HaCasa)!.
 >
->Thank you for your patience and interest — stay tuned for updates!
+>Thank you for your patience and interest stay tuned for updates!

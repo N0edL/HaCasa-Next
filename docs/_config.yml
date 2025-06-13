@@ -11,11 +11,6 @@ color_scheme: hacasa
 
 footer_content: _includes/footer_custom.html
 
-callouts:
-  warning:
-    title: Warning
-    color: red
-
 # Aux links for the upper right navigation
 aux_links:
   "HaCasa Next on GitHub":
