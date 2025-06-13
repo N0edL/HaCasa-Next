@@ -18,6 +18,8 @@ callouts:
 
 # Aux links for the upper right navigation
 aux_links:
+  "HaCasa Next on GitHub":
+    - "https://github.com/N0edL/HaCasa-Next"
   "HaCasa on GitHub":
     - "https://github.com/damianeickhoff/HaCasa"
 

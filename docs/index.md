@@ -1,5 +1,5 @@
 ---
-title: Welcome to HaCasa Next
+title: Welcome
 layout: home
 nav_order: 0
 ---
