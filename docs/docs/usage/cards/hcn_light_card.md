@@ -1,10 +1,10 @@
 ---
-title: Usage
+title: Light Card
 layout: page
-nav_order: 2
+parent: Cards
 ---
 
-# Usage
+# Light Card
 
 {: .wip }
 > HaCasa-Next is currently under development, and the first official release is coming soon!

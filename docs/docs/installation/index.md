@@ -4,9 +4,10 @@ layout: page
 nav_order: 1
 ---
 
-{: .highlight }
-> Work in Progress
->
+
+# Installation
+
+{: .wip }
 > HaCasa-Next is currently under development, and the first official release is coming soon!
 > For now, you can refer to the original [HaCasa documentation](https://damianeickhoff.github.io/HaCasa/docs/installation/) for installation instructions.
 >

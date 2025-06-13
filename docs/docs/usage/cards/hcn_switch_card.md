@@ -1,10 +1,11 @@
 ---
-title: Usage
+hide_table_of_contents: true
+title: Switch card
 layout: page
-nav_order: 2
+parent: Cards
 ---
 
-# Usage
+# Switch Card
 
 {: .wip }
 > HaCasa-Next is currently under development, and the first official release is coming soon!

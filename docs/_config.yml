@@ -27,3 +27,6 @@ callouts:
   warning:
     title: Warning
     color: red
+  wip:
+    title: Work in Progress
+    color: yellow
