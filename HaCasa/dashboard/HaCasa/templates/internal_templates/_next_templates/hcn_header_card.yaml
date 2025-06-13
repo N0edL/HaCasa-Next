@@ -1,0 +1,159 @@
+hcn_header_card_c:
+  variables:
+    person_1_entity: ""  # Entity for person 1, e.g., person.john
+    person_2_entity: ""  # Entity for person 2, e.g., person.jane
+  show_name: false
+  show_icon: false
+  show_label: false
+  show_state: false
+  styles:
+    grid:
+      - grid-template-areas: |
+          "menu person_1 person_2"
+      - grid-template-columns: 1fr min-content min-content
+      - column-gap: 8px
+    card:
+      - height: 100%
+      - border-radius: var(--border-radius)
+      - box-shadow: var(--border-radius)
+      - background: none
+      - overflow: visible
+      - margin: 0 0 20px 0
+      - padding: 0
+    custom_fields:
+      menu:
+        - justify-self: start
+      person_1:
+        - justify-self: end
+      person_2:
+        - justify-self: end
+  custom_fields:
+    menu:
+      card:
+        type: custom:button-card
+        icon: fas:bars
+        styles:
+          card:
+            - height: 40px
+            - width: 40px
+            - margin: 0
+            - padding: 0
+            - border-radius: 50%
+            - justify-self: end
+          img_cell:
+            - height: 100%
+          icon:
+            - width: 35%
+        tap_action:
+          action: navigate
+          navigation_path: /config/dashboard
+    person_1:
+      card:
+        type: custom:button-card
+        entity: "[[[ return variables.person_1_entity ]]]"
+        show_entity_picture: true
+        show_name: false
+        show_icon: false
+        show_label: false
+        show_state: false
+        styles:
+          card:
+            - height: 40px
+            - width: 40px
+            - margin: 0
+            - padding: 0
+            - border-radius: 50%
+            - justify-self: end
+            - position: relative
+            - overflow: visible
+          img_cell:
+            - height: 100%
+            - width: 100%
+            - border-radius: 50%
+            - overflow: hidden
+          entity_picture:
+            - height: 100%
+            - width: 100%
+            - object-fit: cover
+            - border-radius: 50%
+        custom_fields:
+          status:
+            card:
+              type: "custom:button-card"
+              icon: "[[[ return states[variables.person_1_entity].state === 'home' ? 'fas:home' : 'fas:door-open' ]]]"
+              show_name: false
+              show_state: false
+              show_label: false
+              styles:
+                card:
+                  - background-color: "[[[ return states[variables.person_1_entity].state === 'home' ? 'var(--color-green)' : 'var(--color-orange)' ]]]"
+                  - color: white
+                  - border-radius: 50%
+                  - height: 18px
+                  - width: 18px
+                  - position: absolute
+                  - top: -45px
+                  - right: -5px
+                  - display: flex
+                  - align-items: center
+                  - justify-content: center
+                  - box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2)
+                icon:
+                  - color: white
+                  - width: 60%
+                  - height: 60%
+    person_2:
+      card:
+        type: custom:button-card
+        entity: "[[[ return variables.person_2_entity ]]]"
+        show_entity_picture: true
+        show_name: false
+        show_icon: false
+        show_label: false
+        show_state: false
+        styles:
+          card:
+            - height: 40px
+            - width: 40px
+            - margin: 0
+            - padding: 0
+            - border-radius: 50%
+            - justify-self: end
+            - position: relative
+            - overflow: visible
+          img_cell:
+            - height: 100%
+            - width: 100%
+            - border-radius: 50%
+            - overflow: hidden
+          entity_picture:
+            - height: 100%
+            - width: 100%
+            - object-fit: cover
+            - border-radius: 50%
+        custom_fields:
+          status:
+            card:
+              type: "custom:button-card"
+              icon: "[[[ return states[variables.person_2_entity].state === 'home' ? 'fas:home' : 'fas:door-open' ]]]"
+              show_name: false
+              show_state: false
+              show_label: false
+              styles:
+                card:
+                  - background-color: "[[[ return states[variables.person_2_entity].state === 'home' ? 'var(--color-green)' : 'var(--color-orange)' ]]]"
+                  - color: white
+                  - border-radius: 50%
+                  - height: 18px
+                  - width: 18px
+                  - position: absolute
+                  - top: -45px
+                  - right: -5px
+                  - display: flex
+                  - align-items: center
+                  - justify-content: center
+                  - box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2)
+                icon:
+                  - color: white
+                  - width: 60%
+                  - height: 60%
