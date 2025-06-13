@@ -4,7 +4,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/N0edL/HaCasa-Next?display_name=release&style=for-the-badge&label=Latest%20release&color=%239aaed4)
 ![GitHub Repo stars](https://img.shields.io/github/stars/N0edL/HaCasa-Next?style=for-the-badge&logo=github&label=Github%20Stars&labelColor=%23d4b392&color=%23f9f2e9)
 
-## What is HaCasa?
+## What is HaCasa Next?
 a refined fork of the original HaCasa project. We’ve squashed some bugs, cleaned up the visuals, and added new card designs to take your Home Assistant dashboard to the next level.
 
 ## Documentation
