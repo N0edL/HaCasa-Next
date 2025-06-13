@@ -1,10 +1,10 @@
-title: HaCasa
+title: HaCasa Next
 description: A modern yet simple UI for your Home Assistant dashboard
 theme: just-the-docs
 logo: "/assets/images/logo.svg"
 favicon_ico: "/assets/images/favicon.svg"
 
-url: https://damianeickhoff.github.io/hacasa-docs
+url: https://n0edl.github.io/HaCasa-Next
 
 # Color scheme supports "light" (default) and "dark"
 color_scheme: hacasa
