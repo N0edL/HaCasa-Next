@@ -1,0 +1,76 @@
+hcn_weather_card_c:
+  variables:
+    name_entity: "" # Entity for the name, e.g., temperature
+    label_entity: "" # Entity for the label, e.g., feels like temperature
+    secondary_entity: "" # Entity for secondary label, e.g, weather information
+    temperature_unit: "˚C" # Default temperature unit, can be overridden
+    label_prefix: "Feels like" # Prefix for the label
+  show_label: true
+  show_icon: false
+  name: "[[[ return variables.name_entity && states[variables.name_entity] ? states[variables.name_entity].state + variables.temperature_unit : '' ]]]"
+  label: "[[[ return variables.label_entity && states[variables.label_entity] ? variables.label_prefix + ' ' + states[variables.label_entity].state + variables.temperature_unit : '' ]]]"
+  styles:
+    grid:
+      - grid-template-areas: |
+          "n weather_icon"
+          "l weather_icon"
+          "weather weather"
+      - grid-template-columns: 1fr min-content
+      - grid-template-rows: min-content min-content min-content
+    card:
+      - background: var(--weather-card-background)
+      - padding: 25px
+    name:
+      - color: var(--weather-card-text-color)
+      - justify-self: start
+      - align-self: end
+      - font-family: montserrat
+      - font-weight: 700
+      - font-size: 2rem
+      - z-index: 1
+    label:
+      - color: var(--weather-card-text-color)
+      - justify-self: start
+      - align-self: start
+      - z-index: 1
+      - font-family: montserrat
+      - font-size: 1rem
+  custom_fields:
+    weather_icon: >-
+      [[[
+        const weather = states[entity.entity_id].state;
+        return '<img src="/local/images/next/weather/' + weather + '.svg" class="color-white-svg" style="width: 82px;" />'
+      ]]]
+    weather:
+      card:
+        type: custom:button-card
+        show_label: false
+        entity: "[[[ return entity ? entity.entity_id : '' ]]]"
+        show_name: true
+        show_icon: false
+        show_state: false
+        name: "[[[ return states[variables.secondary_entity].state ]]]"
+        styles:
+          card:
+            - background: none
+            - box-shadow: none
+            - border-radius: none
+            - overflow: visible
+            - padding: 0%
+          name:
+            - justify-self: start
+            - overflow: visible
+            - font-family: montserrat
+            - opacity: 0.8
+            - font-size: 1rem
+            - color: var(--weather-card-text-color)
+            - text-align: left
+            - white-space: normal
+            - word-wrap: normal
+            - overflow-wrap: break-word
+          label:
+            - justify-self: start
+            - font-size: 1rem
+            - font-family: montserrat
+            - opacity: 0.8
+            - color: var(--weather-card-text-color)
