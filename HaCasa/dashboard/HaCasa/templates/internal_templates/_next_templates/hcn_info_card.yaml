@@ -1,0 +1,151 @@
+hcn_info_card_c:
+  variables:
+    entity_1: "" # Entity for the first item, e.g., sensor.temperature
+    entity_1_icon: "" # Icon for the first item, e.g., mdi:thermometer
+    entity_1_label: "" # Label for the first item, e.g., Temperature
+    entity_2: "" # Entity for the second item, e.g., sensor.humidity
+    entity_2_icon: "" # Icon for the second item, e.g., mdi:water-percent
+    entity_2_label: "" # Label for the second item, e.g., Humidity
+    entity_3: "" # Entity for the third item, e.g., sensor.pressure
+    entity_3_icon: "" # Icon for the third item, e.g., mdi:gauge
+    entity_3_label: "" # Label for the third item, e.g., Pressure
+  styles:
+    grid:
+      - grid-template-areas: "'first second third'"
+      - grid-template-columns: 1fr 1fr 1fr
+    card:
+      - padding: 15px
+    custom_fields:
+      first:
+        - justify-self: start
+      second:
+        - justify-self: center
+      third:
+        - justify-self: end
+  custom_fields:
+    first:
+      card:
+        type: custom:button-card
+        show_label: true
+        card_mod:
+          style: |
+            ha-card {
+              padding: 5px !important;
+            }
+        entity: |
+          [[[ return variables.entity_1 ]]]
+        icon: |
+          [[[ return variables.entity_1_icon ]]]
+        name: |
+          [[[ return variables.entity_1_label ]]]
+        label: |
+          [[[ return states[variables.entity_1].state + (states[variables.entity_1].attributes.unit_of_measurement || '') ]]]
+        styles:
+          card:
+            - border-radius: 0px
+            - box-shadow: none
+            - padding-right: 5px
+          grid:
+            - grid-template-areas: "'i n' 'i l'"
+            - grid-template-columns: min-content
+            - column-gap: 10px
+          icon:
+            - width: 20px
+          img_cell:
+            - width: 20px
+          name:
+            - justify-self: start
+            - font-size: 10px
+            - font-family: montserrat
+            - font-weight: 500
+            - color: var(--color-dark-gray)
+            - opacity: 80%
+            - margin-bottom: 2px
+          label:
+            - justify-self: start
+            - font-size: 14px
+            - font-weight: 700
+    second:
+      card:
+        type: custom:button-card
+        show_label: true
+        card_mod:
+          style: |
+            ha-card {
+              padding: 5px !important;
+            }
+        entity: |
+          [[[ return variables.entity_2 ]]]
+        icon: |
+          [[[ return variables.entity_2_icon ]]]
+        name: |
+          [[[ return variables.entity_2_label ]]]
+        label: |
+          [[[ return states[variables.entity_2].state + (states[variables.entity_2].attributes.unit_of_measurement || '') ]]]
+        styles:
+          card:
+            - border-radius: 0px
+            - box-shadow: none
+            - padding-right: 5px
+          grid:
+            - grid-template-areas: "'i n' 'i l'"
+            - grid-template-columns: min-content
+            - column-gap: 10px
+          icon:
+            - width: 20px
+          img_cell:
+            - width: 20px
+          name:
+            - justify-self: start
+            - font-size: 10px
+            - font-family: montserrat
+            - font-weight: 500
+            - color: var(--color-dark-gray)
+            - opacity: 80%
+            - margin-bottom: 2px
+          label:
+            - justify-self: start
+            - font-size: 14px
+            - font-weight: 700
+    third:
+      card:
+        type: custom:button-card
+        card_mod:
+          style: |
+            ha-card {
+              padding: 5px !important;
+            }
+        entity: |
+          [[[ return variables.entity_3 ]]]
+        icon: |
+          [[[ return variables.entity_3_icon ]]]
+        name: |
+          [[[ return variables.entity_3_label ]]]
+        label: |
+          [[[ return states[variables.entity_3].state + (states[variables.entity_3].attributes.unit_of_measurement || '') ]]]
+        show_label: true
+        styles:
+          card:
+            - border-radius: 0px
+            - box-shadow: none
+            - padding-right: 5px
+          grid:
+            - grid-template-areas: "'i n' 'i l'"
+            - grid-template-columns: min-content
+            - column-gap: 10px
+          icon:
+            - width: 20px
+          img_cell:
+            - width: 20px
+          name:
+            - justify-self: start
+            - font-size: 10px
+            - font-family: montserrat
+            - font-weight: 500
+            - color: var(--color-dark-gray)
+            - opacity: 80%
+            - margin-bottom: 2px
+          label:
+            - justify-self: start
+            - font-size: 14px
+            - font-weight: 700
