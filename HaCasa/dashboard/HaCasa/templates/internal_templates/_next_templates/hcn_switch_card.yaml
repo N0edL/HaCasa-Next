@@ -6,6 +6,7 @@ hcn_switch_card:
     show_graph: false # Optional: Show graph
     show_graph_line: true # Optional: Show graph line
     show_graph_fill: false # Optional: Show graph
+    show_graph_when_off: false # Optional: Show graph when the switch is off
     label_on: "on" # Optional: Custom label for "on" state
     label_off: "off" # Optional: Custom label for "off" state
   show_state: true
@@ -28,7 +29,7 @@ hcn_switch_card:
       - font-size: 14px
     state:
       - text-align: left
-      - font-size: 10px
+      - font-size: 11px
       - font-weight: 500
       - justify-self: start
       - align-self: center
@@ -46,13 +47,15 @@ hcn_switch_card:
     custom_fields:
       graph:
         - display: |
-            [[[
-              if (variables.show_graph) {
+            [[[ 
+              if (
+                variables.show_graph && 
+                (entity.state === "on" || variables.show_graph_when_off)
+              ) {
                 return 'block';
-              }
-              else {
+              } else {
                 return 'none';
-              }            
+              }
             ]]]
         - position: absolute
         - left: 0
