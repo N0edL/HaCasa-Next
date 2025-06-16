@@ -1,4 +1,6 @@
 hcn_switch_card:
+  icon: fapro:lightbulb-on
+  template: hc_base_card
   variables:
     power_entity: null # Optional: Entity for power consumption (e.g., 'sensor.switch_power')
     power_unit: W # Optional: Unit for power entity (e.g., 'W', 'kW', etc.)
@@ -9,41 +11,26 @@ hcn_switch_card:
     show_graph_when_off: false # Optional: Show graph when the switch is off
     label_on: "on" # Optional: Custom label for "on" state
     label_off: "off" # Optional: Custom label for "off" state
-  show_state: true
+  label: |
+    [[[
+      if (entity.state === "on" && variables.power_entity !== null) {
+        return variables.label_on + " - " + states[variables.power_entity].state + variables.power_unit;
+      } else {
+        return states[entity.entity_id].state === 'on' ? variables.label_on : variables.label_off;
+      }
+    ]]]
   styles:
     grid:
       - grid-template-areas: |
           '. i'
           'n n'
-          's s'
+          'l l'
           'graph graph'
       - grid-template-rows: min-content min-content 1fr
-    card:
-      - padding: 12px
-      - height: 100px
-    name:
-      - text-align: left
-      - font-weight: 700
-      - justify-self: start
-      - align-self: end
+    label:
       - font-size: 14px
-    state:
-      - text-align: left
-      - font-size: 11px
-      - font-weight: 500
-      - justify-self: start
-      - align-self: center
-      - color: var(--subtext-color)
-    icon:
-      - width: 50%
-      - color: white
     img_cell:
-      - background: var(--opacity-contrast-100)
-      - border-radius: 50%
-      - width: 35px
-      - height: 35px
-      - align-self: start
-      - margin-bottom: 10px
+      - margin-bottom: 0px
     custom_fields:
       graph:
         - display: |
@@ -65,44 +52,35 @@ hcn_switch_card:
         - pointer-events: none
   state:
     - value: "on"
+      icon: mdi:lightbulb-on
       styles:
         card:
-          - background: var(--primary-color)
+          - background: "[[[ return variables.card_color ]]]"
         name:
           - color: white
         label:
           - color: white
         state:
           - color: white
-      state_display: |
-        [[[
-          if (entity.state === "on" && variables.power_entity !== null) {
-            return variables.label_on + " - " + states[variables.power_entity].state + variables.power_unit;
-          } else {
-            return states[entity.entity_id].state === 'on' ? variables.label_on : variables.label_off;
-          }
-        ]]]
     - value: "off"
       styles:
         icon:
-          - color: var(--icon-color-default)
+          - color: var(--icon-color)
         img_cell:
           - background: var(--background-icon-color-default)
-      state_display: |
-        [[[
-          return states[entity.entity_id].state === 'on' ? variables.label_on : variables.label_off;
-        ]]]
-    - value: unavailable
+    - value: "unavailable"
       styles:
         name:
           - text-decoration: line-through
         icon:
-          - color: var(--icon-color-default)
+          - color: var(--icon-color)
         img_cell:
           - background: var(--background-icon-color-default)
         card:
           - opacity: 0.6
           - pointer-events: none
+      label: Unknown
+      icon: mdi:lightbulb-question
   custom_fields:
     graph:
       card:
