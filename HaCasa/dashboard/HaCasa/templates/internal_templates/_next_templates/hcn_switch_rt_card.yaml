@@ -1,0 +1,106 @@
+hcn_switch_rt_card:
+  icon: mdi:light-switch
+  template: hc_base_card
+  variables:
+    switch_entity: null # Required: Entity for the switch (e.g., 'switch.ac_unit')
+    power_unit: W # Unit for power entity (e.g., 'W', 'kW', etc.)
+    graph_color: white # Optional: Color of the graph line
+    show_graph: true # Optional: Show graph
+    show_graph_line: true # Optional: Show graph line
+    show_graph_fill: true # Optional: Show graph fill
+    show_graph_when_off: false # Optional: Show graph when the switch is off
+    label_on: "on" # Custom label for "on" state
+    label_off: "off" # Custom label for "off" state
+    round_power: false # Optional: Round power value to nearest integer
+  label: |
+    [[[
+      const switchState = states[variables.switch_entity]?.state;
+      const raw = entity.state?.replaceAll(",", "");
+      let power = null;
+
+      if (raw) {
+        const parsed = parseFloat(raw);
+        power = variables.round_power ? Math.round(parsed) : parsed;
+      }
+
+      if (switchState === "on" && power !== null) {
+        return variables.label_on + ": " + power + variables.power_unit;
+      } else {
+        return switchState === "on" ? variables.label_on : variables.label_off;
+      }
+    ]]]
+  styles:
+    grid:
+      - grid-template-areas: |
+          '. i'
+          'n n'
+          'l l'
+          'graph graph'
+      - grid-template-rows: min-content min-content 1fr
+    label:
+      - color: null
+      - font-size: 14px
+    img_cell:
+      - margin-bottom: 0px
+    card:
+      - background: "[[[ return variables.card_color ]]]"
+    custom_fields:
+      graph:
+        - display: |
+            [[[ 
+              const switchState = states[variables.switch_entity]?.state;
+              if (
+                variables.show_graph && 
+                (switchState === "on" || variables.show_graph_when_off)
+              ) {
+                return 'block';
+              } else {
+                return 'none';
+              }
+            ]]]
+        - position: absolute
+        - left: 0
+        - bottom: "-1px"
+        - width: 100%
+        - z-index: 1
+        - pointer-events: none
+  custom_fields:
+    graph:
+      card:
+        type: custom:mini-graph-card
+        entities:
+          - entity: "[[[ return entity.entity_id ]]]"
+            show_fill: "[[[ return variables.show_graph_fill ]]]"
+            show_line: "[[[ return variables.show_graph_line ]]]"
+        animate: true
+        show:
+          name: false
+          icon: false
+          state: false
+        line_width: 1
+        line_color: |
+          [[[
+            const switchState = states[variables.switch_entity]?.state;
+            if (switchState === "on" && entity !== null) {
+              return variables.graph_color;
+            } else {
+              return 'var(--primary-color)';
+            }
+          ]]]
+        hours_to_show: 24
+        card_mod:
+          style: |
+            ha-card {
+              background: none;
+              box-shadow: none;
+              --ha-card-border-width: 0;
+              z-index: 1
+            }
+  tap_action:
+    action: call-service
+    service: homeassistant.toggle
+    service_data:
+      entity_id: "[[[ return variables.switch_entity ]]]"
+  hold_action:
+    action: more-info
+    entity: "[[[ return variables.switch_entity ]]]"
