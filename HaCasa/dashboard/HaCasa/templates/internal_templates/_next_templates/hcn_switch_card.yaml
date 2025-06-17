@@ -14,7 +14,7 @@ hcn_switch_card:
   label: |
     [[[
       if (entity.state === "on" && variables.power_entity !== null) {
-        return variables.label_on + " - " + states[variables.power_entity].state + variables.power_unit;
+        return variables.label_on + ": " + states[variables.power_entity].state + variables.power_unit;
       } else {
         return states[entity.entity_id].state === 'on' ? variables.label_on : variables.label_off;
       }
