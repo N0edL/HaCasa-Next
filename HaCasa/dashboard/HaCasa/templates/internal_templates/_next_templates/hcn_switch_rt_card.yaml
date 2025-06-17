@@ -12,6 +12,7 @@ hcn_switch_rt_card:
     label_on: "on" # Custom label for "on" state
     label_off: "off" # Custom label for "off" state
     round_power: false # Optional: Round power value to nearest integer
+    hold_action_entity: null # Optional: Entity for hold action (default is switch_entity)
   label: |
     [[[
       const switchState = states[variables.switch_entity]?.state;
@@ -43,7 +44,13 @@ hcn_switch_rt_card:
     img_cell:
       - margin-bottom: 0px
     card:
-      - background: "[[[ return variables.card_color ]]]"
+      - background: |
+          [[[
+            const switchState = states[variables.switch_entity]?.state;
+            if (switchState === "on") {
+              return variables.card_color;
+            }
+          ]]]
     custom_fields:
       graph:
         - display: |
@@ -103,4 +110,4 @@ hcn_switch_rt_card:
       entity_id: "[[[ return variables.switch_entity ]]]"
   hold_action:
     action: more-info
-    entity: "[[[ return variables.switch_entity ]]]"
+    entity: "[[[ return variables.hold_action_entity || variables.switch_entity ]]]"
