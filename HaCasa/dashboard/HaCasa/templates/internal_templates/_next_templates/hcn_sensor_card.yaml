@@ -1,0 +1,55 @@
+hcn_sensor_card:
+  template: hc_base_card
+  show_name: true
+  show_icon: true
+  show_state: true
+  show_last_changed: true
+  variables:
+    hc_card_color: var(--primary-color)
+  state:
+    - value: "on"
+      icon: "[[[ return variables.on_icon ]]]"
+      styles:
+        card:
+          - background: "[[[ return variables.hc_card_color ]]]"
+        name:
+          - color: white
+        state:
+          - color: white
+        icon:
+          - color: white
+        img_cell:
+          - background: var(--opacity-contrast-100)
+        label:
+          - color: white
+    - value: "off"
+      icon: "[[[ return variables.off_icon ]]]"
+  styles:
+    grid:
+      - grid-template-areas: |
+          's i'
+          'n n'
+          'l l'
+      - grid-template-rows: min-content 1fr min-content
+      - grid-template-columns: 1fr 1fr
+    card:
+      - padding: 12px
+    state:
+      - justify-self: start
+      - font-size: 20px
+      - font-weight: 800
+    name:
+      - text-align: left
+      - font-weight: 400
+      - justify-self: start
+      - align-self: end
+      - overflow: visible
+      - opacity: 90%
+    label:
+      - text-align: left
+      - color: var(--subtext-color)
+      - font-weight: 500
+      - font-size: 12px
+      - justify-self: start
+      - align-self: center
+      - margin-bottom: 3px
