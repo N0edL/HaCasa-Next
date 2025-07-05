@@ -11,6 +11,8 @@ hcn_switch_card:
     show_graph_when_off: false # Optional: Show graph when the switch is off
     label_on: "on" # Optional: Custom label for "on" state
     label_off: "off" # Optional: Custom label for "off" state
+  triggers_update:
+    - "[[[ return variables.power_entity ]]]"
   label: |
     [[[
       if (entity.state === "on" && variables.power_entity !== null) {
