@@ -8,7 +8,6 @@ nav_order: 1
 
 The installation of **HaCasa Next** is identical to the installation process of the original [HaCasa](https://github.com/damianeickhoff/HaCasa/tree/main).  
 We have kept the same manual installation approach to ensure compatibility and flexibility.  
-{: .fs-6 .fw-300 }
 
 While this may seem a bit daunting at first, rest assured that we have created a detailed guide to help you through the process step by step. Our ultimate goal is to make **HaCasa Next** more accessible by integrating it into HACS (Home Assistant Community Store) or even providing it as a native integration. This would allow users to install and configure **HaCasa Next** directly through the Home Assistant UI, making the process much simpler and more user-friendly.
 
