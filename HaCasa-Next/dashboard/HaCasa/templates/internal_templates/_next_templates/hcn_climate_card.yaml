@@ -1,0 +1,130 @@
+hcn_climate_card:
+  variables:
+    show_graph: false # Optional: Show graph of current temperature
+    graph_entity: "" # Optional: Entity to use for graphing
+    graph_color: "var(--color-red)" # Optional: Color to use for graphing
+    dynamic_graph_color: "" # Optional: Dynamic color to use for graphing depending on mode
+    current_temp_label: "Current temperature: " # Label for current temperature
+  show_label: true
+  show_state: true
+  tap_action:
+    action: more-info
+  state_display: |
+    [[[ 
+      return variables.current_temp_label + states[entity.entity_id].attributes.current_temperature + "°";
+    ]]]
+  label: |
+    [[[ return states[entity.entity_id].attributes.temperature ]]]
+  show_icon: false
+  styles:
+    grid:
+      - grid-template-areas: |
+          'l mode'
+          'n none'
+          's none'
+          'graph graph'
+      - grid-template-rows: repeat(4, min-content)
+      - grid-template-columns: 1fr auto
+    card:
+      - padding: 20px
+      - position: relative
+    name:
+      - justify-self: start
+      - align-self: end
+      - font-weight: 600
+      - font-size: 14px
+      - z-index: 2
+      - margin-bottom: -7px
+      - pointer-events: none
+    label:
+      - font-size: 70px
+      - justify-self: start
+      - align-self: start
+      - font-weight: 700
+      - z-index: 2
+    state:
+      - justify-self: start
+      - color: var(--subtext-color)
+      - font-size: 12px
+      - margin-top: 8px
+      - font-weight: 500
+      - z-index: 2
+    custom_fields:
+      mode:
+        - justify-self: end
+        - align-self: start
+        - font-size: 14px
+        - font-weight: 600
+        - opacity: 80%
+        - color: |
+            [[[
+              let mode = states[entity.entity_id].state;
+              if (mode === 'heat') return 'var(--color-red)';
+              if (mode === 'cool') return 'var(--color-blue)';
+              if (mode === 'fan_only') return 'var(--color-green)';
+              if (mode === 'dry') return 'var(--color-yellow)';
+              if (mode === 'off') return 'var(--disabled-text-color)';
+              return 'var(--primary-text-color)';
+            ]]]
+        - margin-right: 4px
+        - margin-top: 2px
+        - z-index: 3
+      graph:
+        - display: |
+            [[[ return variables.show_graph && variables.graph_entity ? 'block' : 'none' ]]]
+        - position: absolute
+        - left: 0
+        - bottom: -1px
+        - width: 100%
+        - z-index: 1
+
+  custom_fields:
+    mode: |
+      [[[ 
+        let mode = states[entity.entity_id].state;
+        if (mode === 'heat') return "Verwarmen";
+        if (mode === 'cool') return "Koelen";
+        if (mode === 'fan_only') return "Ventileren";
+        if (mode === 'dry') return "Ontvochtigen";
+        if (mode === 'off') return "Uit";
+        return mode;
+      ]]]
+    graph:
+      card:
+        type: custom:mini-graph-card
+        entities:
+          - entity: "[[[ return variables.graph_entity ]]]"
+            show_fill: true
+            show_line: false
+        show:
+          name: false
+          icon: false
+          state: false
+          points: false
+          labels: false
+        height: 100
+        line_width: 2
+        line_color: |
+          [[[
+            if (variables.dynamic_graph_color) {
+              let mode = states[entity.entity_id].state;
+              if (mode === 'heat_cool' ) return 'var(--primary-text-color)'
+              if (mode === 'heat') return 'var(--color-orange)';
+              if (mode === 'cool') return 'var(--color-blue)';
+              if (mode === 'fan_only') return 'var(--color-green)';
+              if (mode === 'dry') return 'var(--color-red)';
+              if (mode === 'off') return 'var(--opacity-contrast-100)';
+              return 'var(--color-red)';
+            }
+            return variables.graph_color;
+          ]]]
+        card_mod:
+          style: |
+            ha-card {
+              background: none;
+              box-shadow: none;
+              --ha-card-border-width: 0;
+              z-index: 1;
+            }
+        tap_action:
+          action: more-info
